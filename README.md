@@ -2,7 +2,7 @@
 
 Un timer web elegant și simplu pentru pauze eficiente în timpul sesiunilor de lucru. Oferă intervale de timp personalizabile și opțional muzică de fundal relaxantă pentru a te ajuta să rămâi concentrat și productiv.
 
-![Break Timer Screenshot](assets/ss1.png)
+![screenshot](assets/SS1.png)
 
 🔗 **Live Demo**: [https://ovidiuchis.github.io/timer](https://ovidiuchis.github.io/timer)
 
