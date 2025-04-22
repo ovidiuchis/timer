@@ -116,7 +116,7 @@ Contribuțiile sunt binevenite! Dacă ai idei sau îmbunătățiri:
 
 ## 📄 Licență
 
-Free to 🖤, free tu use 🚀
+Free to 🖤, free to use 🚀
 
 ---
 
