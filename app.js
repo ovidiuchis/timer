@@ -5,6 +5,7 @@ let totalSeconds = 0;
 let remainingSeconds = 0;
 let audio = new Audio();
 let isRunning = false;
+let chimeSound = new Audio("./assets/bell.mp3"); // Use local bell.mp3 file
 
 const timeDisplay = document.getElementById("time-display");
 const progressCircle = document.getElementById("progress");
@@ -14,8 +15,23 @@ const customTimeBtn = document.getElementById("custom-time-btn");
 const customTimeInput = document.getElementById("custom-time-input");
 const customTimeWrapper = document.getElementById("custom-time-wrapper");
 const customTimeOk = document.getElementById("custom-time-ok");
+const chimeToggle = document.getElementById("chime-toggle");
 
 startPauseBtn.disabled = true;
+
+// Preload the chime sound
+chimeSound.load();
+
+// Load chime preference from localStorage
+const savedChimePref = localStorage.getItem("chimeEnabled");
+if (savedChimePref !== null) {
+  chimeToggle.checked = savedChimePref === "true";
+}
+
+// Save chime preference when changed
+chimeToggle.addEventListener("change", () => {
+  localStorage.setItem("chimeEnabled", chimeToggle.checked);
+});
 
 // Fetch and populate time button
 fetch("./assets/times.json")
@@ -35,6 +51,10 @@ fetch("./assets/times.json")
         customTimeInput.style.display = "none";
         customTimeWrapper.style.display = "none";
         customTimeInput.value = "";
+        resetTimer();
+
+        // Remove completed class when selecting a new time
+        document.querySelector(".timer-circle").classList.remove("completed");
       });
       timeButtons.appendChild(btn);
     });
@@ -74,6 +94,9 @@ function setTimer(seconds) {
   totalSeconds = remainingSeconds = seconds;
   updateDisplay();
   updateProgress();
+
+  // Remove completed class when setting a new timer
+  document.querySelector(".timer-circle").classList.remove("completed");
 }
 
 function startTimer() {
@@ -111,6 +134,16 @@ function startTimer() {
       clearInterval(timer);
       isRunning = false;
       audio.pause();
+
+      // Play chime sound when timer ends
+      playChimeSound();
+
+      // Update UI to show timer completed - make sure the circle is fully visible
+      document.querySelector(".timer-circle").classList.remove("running");
+      progressCircle.style.strokeDashoffset = 0; // Force the circle to be fully drawn
+      document.querySelector(".timer-circle").classList.add("completed");
+      document.getElementById("start-icon").innerHTML =
+        '<path d="M8 5v14l11-7z" />';
     }
   }, 1000);
 }
@@ -131,9 +164,17 @@ function resetTimer() {
   audio.pause();
   audio.currentTime = 0;
   audio.src = document.getElementById("music").value;
+
+  // Remove both running and completed classes
   document.querySelector(".timer-circle").classList.remove("running");
+  document.querySelector(".timer-circle").classList.remove("completed");
+
   document.getElementById("start-icon").innerHTML =
     '<path d="M8 5v14l11-7z" />';
+
+  // Reset chime sound
+  chimeSound.pause();
+  chimeSound.currentTime = 0;
 }
 
 function updateDisplay() {
@@ -156,6 +197,23 @@ function toggleStartPause() {
   } else {
     startTimer();
     icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />';
+  }
+}
+
+// Play chime sound when timer ends
+function playChimeSound() {
+  // Only play if the toggle is checked
+  if (chimeToggle.checked) {
+    // Stop background music if it's playing
+    if (audio.src) {
+      audio.pause();
+    }
+
+    // Play chime sound
+    chimeSound.currentTime = 0;
+    chimeSound.play().catch((error) => {
+      console.error("Failed to play chime sound:", error);
+    });
   }
 }
 

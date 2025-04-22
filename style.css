@@ -145,6 +145,45 @@ circle {
   font-size: 2rem;
 }
 
+/* Timer states */
+.timer-circle.completed #progress {
+  stroke: #ffc107 !important; /* Force orange color */
+  stroke-width: 15;
+  transition: none; /* Remove transition to prevent conflict with animation */
+  animation: pulse-completion 1.5s ease-in-out infinite;
+}
+
+.timer-circle.completed #time-display {
+  animation: pulse-text 1.5s ease-in-out infinite;
+  color: #ff9800; /* More vibrant color */
+  font-weight: bold;
+}
+
+@keyframes pulse-completion {
+  0% {
+    stroke-width: 15;
+    stroke: #ffc107;
+  }
+  50% {
+    stroke-width: 20;
+    stroke: #ff9800; /* Brighter orange at animation peak */
+  }
+  100% {
+    stroke-width: 15;
+    stroke: #ffc107;
+  }
+}
+
+@keyframes pulse-text {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
 /* Controls */
 .controls {
   display: flex;
@@ -181,6 +220,62 @@ circle {
   height: 24px;
   display: block;
   fill: currentColor;
+}
+
+/* Sound Settings */
+.sound-settings {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  transition: 0.3s;
+  flex-shrink: 0;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+input:checked + .toggle-slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(16px);
+}
+
+.toggle-label {
+  font-size: 0.95rem;
+  color: var(--text-color);
 }
 
 /* Music Select */
