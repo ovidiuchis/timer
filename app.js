@@ -1,5 +1,4 @@
-// Vezi aici pt. MP3-uri
-// https://freemusicarchive.org/music/butterflystudio/dreamy-piano-background/dreamy-piano-background/
+// Timer application for taking breaks
 
 let timer;
 let totalSeconds = 0;
@@ -18,7 +17,8 @@ const customTimeOk = document.getElementById("custom-time-ok");
 
 startPauseBtn.disabled = true;
 
-fetch("/assets/times.json")
+// Fetch and populate time button
+fetch("./assets/times.json")
   .then((res) => res.json())
   .then((times) => {
     const timeButtons = document.getElementById("time-buttons");
@@ -36,22 +36,21 @@ fetch("/assets/times.json")
         customTimeWrapper.style.display = "none";
         customTimeInput.value = "";
       });
-
       timeButtons.appendChild(btn);
     });
   });
-fetch("/assets/music.json")
+
+// Fetch and populate music options
+fetch("./assets/music.json")
   .then((res) => res.json())
   .then((musicList) => {
     const musicSelect = document.getElementById("music");
 
-    // Add "No music" first
     const silentOption = document.createElement("option");
     silentOption.value = "";
     silentOption.textContent = "🔇 No music";
     musicSelect.appendChild(silentOption);
 
-    // Add real tracks
     musicList.forEach((m) => {
       const option = document.createElement("option");
       option.value = m.url;
@@ -59,24 +58,24 @@ fetch("/assets/music.json")
       musicSelect.appendChild(option);
     });
 
-    // Restore previous selection if available
     const savedMusic = localStorage.getItem("selectedMusic");
     if (savedMusic !== null) {
       musicSelect.value = savedMusic;
     }
 
-    // Save selection on change
     musicSelect.addEventListener("change", () => {
       localStorage.setItem("selectedMusic", musicSelect.value);
     });
   });
 
+// Timer-related functions
 function setTimer(seconds) {
   clearInterval(timer);
   totalSeconds = remainingSeconds = seconds;
   updateDisplay();
   updateProgress();
 }
+
 function startTimer() {
   const errorBox = document.getElementById("music-error");
   if (!remainingSeconds || isRunning) return;
@@ -96,7 +95,6 @@ function startTimer() {
     audio.loop = true;
     audio.play();
   } else {
-    // If "No music" is selected, ensure audio stays silent and error stays hidden
     audio.pause();
     audio.src = "";
     errorBox.style.display = "none";
@@ -149,6 +147,7 @@ function updateProgress() {
   const offset = circumference * (1 - remainingSeconds / totalSeconds);
   progressCircle.style.strokeDashoffset = offset;
 }
+
 function toggleStartPause() {
   const icon = document.getElementById("start-icon");
   if (isRunning) {
@@ -156,18 +155,18 @@ function toggleStartPause() {
     icon.innerHTML = '<path d="M8 5v14l11-7z" />';
   } else {
     startTimer();
-    icon.innerHTML = `
-      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-    `;
+    icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />';
   }
 }
 
+// Custom time input handling
 customTimeBtn.addEventListener("click", () => {
   customTimeWrapper.style.display = "flex";
   customTimeInput.focus();
   customTimeInput.style.display = "block";
   customTimeInput.value = "1";
 });
+
 function applyCustomTime() {
   const minutes = parseInt(customTimeInput.value, 10);
   if (!isNaN(minutes) && minutes > 0) {
@@ -189,5 +188,6 @@ customTimeInput.addEventListener("keydown", (e) => {
 
 customTimeOk.addEventListener("click", applyCustomTime);
 
+// Event listeners for buttons
 startPauseBtn.addEventListener("click", toggleStartPause);
 resetBtn.addEventListener("click", resetTimer);

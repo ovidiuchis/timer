@@ -3,5 +3,16 @@
     "name": "Dreamy piano background",
     "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/6NoBh0C5uDwgJKhdOp2U2JybN8xgshcKvDZan2MB.mp3"
   },
-  { "name": "Nature Sounds", "url": "https://www.example.com/audio/nature.mp3" }
+  {
+    "name": "Mountain island dreams",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/kjE7ofKHPrU5wvnSyGzp9LBUYxsaUJqKY4Bbo5de.mp3"
+  },
+  {
+    "name": "Saw you yesterday",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/hl3o9SCwbljGNfHWA0x1SefqHOYSpezSROOwZ9ci.mp3"
+  },
+  {
+    "name": "Relaxing lounge music",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/1UrFstTKbg3xQEEtlQtU2LwAvJvrPgvQbUsNaq2c.mp3"
+  }
 ]
