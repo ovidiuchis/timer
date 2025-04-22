@@ -116,7 +116,7 @@ Contribuțiile sunt binevenite! Dacă ai idei sau îmbunătățiri:
 
 ## 📄 Licență
 
-Acest proiect este licențiat sub licența MIT. Vezi fișierul [LICENSE](LICENSE) pentru detalii.
+Free to 🖤, free tu use 🚀
 
 ---
 
