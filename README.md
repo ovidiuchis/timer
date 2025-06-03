@@ -131,3 +131,9 @@ Free to 🖤, free to use 🚀
 
 - **Ovidiu Chis** – [@ovidiuchis](https://github.com/ovidiuchis)  
   🌐 [ovidiuchis.github.io](http://ovidiuchis.github.io/)
+
+---
+
+## 💣 Bomb Mode
+
+To enable Bomb mode, click the timer dial.

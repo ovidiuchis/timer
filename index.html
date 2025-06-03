@@ -17,13 +17,14 @@
       <div id="time-buttons" class="card-grid">
         <button id="custom-time-btn" class="custom-time">⏱️ Custom</button>
         <div id="custom-time-wrapper" style="display: none; margin-top: 0.5rem">
-          <input
-            type="number"
-            id="custom-time-input"
-            placeholder="Minutes"
-            min="1"
-          />
+          <input type="number" id="custom-time-input" placeholder="Minutes" min="1" />
           <button id="custom-time-ok" class="ok-button">OK</button>
+        </div>
+
+        <button id="until-time-btn" class="custom-time">⏰ Until</button>
+        <div id="until-time-wrapper" style="display: none; margin-top: 0.5rem">
+          <input type="time" id="until-time-input" step="60" />
+          <button id="until-time-ok" class="ok-button">OK</button>
         </div>
       </div>
       <div class="music-select">
@@ -63,27 +64,22 @@
         </button>
 
         <button id="reset" class="icon-button" title="Reset">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="28"
-            height="28"
-            fill="currentColor"
-          >
-            <path
-              d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5a5 5 0 0 1-9.9 1H5.08a7 7 0 1 0 6.92-8z"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5a5 5 0 0 1-9.9 1H5.08a7 7 0 1 0 6.92-8z" />
           </svg>
         </button>
       </div>
+      <br />
+      <span style="display: block; margin-top: 0.5em; font-size: 0.95em; color: #888">
+        💣 Click the timer dial to enable <b>bomb mode</b> !
+      </span>
+      <div id="fullscreen-countdown" style="display: none">
+        <div class="fullscreen-time" id="fullscreen-time">00:00</div>
+        <button class="exit-fullscreen" id="exit-fullscreen" title="Exit fullscreen">✕</button>
+      </div>
 
       <footer class="footer">
-        <a
-          href="https://github.com/ovidiuchis/timer"
-          class="source-link"
-          target="_blank"
-          >source code</a
-        >
+        <a href="https://github.com/ovidiuchis/timer" class="source-link" target="_blank">source code</a>
         | built by
         <a href="http://ovidiuchis.github.io/" target="_blank">@ovidiuchis</a>
       </footer>
