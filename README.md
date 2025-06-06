@@ -1,3 +1,9 @@
+## ☕ Susține
+
+Dacă munca mea te încurajează sau îți este de ajutor, mă poți susține aici 👇
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/ochis)
+
 # 🕒 Break Timer
 
 Un timer web elegant și simplu pentru pauze eficiente în timpul sesiunilor de lucru. Oferă intervale de timp personalizabile și opțional muzică de fundal relaxantă pentru a te ajuta să rămâi concentrat și productiv.
